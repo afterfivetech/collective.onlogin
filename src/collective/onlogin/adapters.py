@@ -12,13 +12,15 @@ from collective.onlogin import REDIRECT_EXPR
 from plone.api.portal import get as get_portal
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.Expression import Expression
+from Products.CMFPlone.PloneBaseTool import getExprContext
+from zope.component import getUtility
+from zope.interface import implementer
+
+
 try:
     from Products.CMFPlone.interfaces import IRedirectAfterLogin
 except ImportError:
     from plone.login.interfaces import IRedirectAfterLogin
-from Products.CMFPlone.PloneBaseTool import getExprContext
-from zope.component import getUtility
-from zope.interface import implementer
 
 
 def OUTAHERE():
