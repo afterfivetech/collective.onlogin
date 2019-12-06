@@ -111,5 +111,4 @@ class RedirectAfterLoginAdapter(object):
                 self.request.form['came_from'] = ''
             logger.info('redirecting to: ' + url)
 
-        # import pdb; pdb.set_trace()
         return url
