@@ -29,27 +29,34 @@
       />
 
   <configure zcml:condition="not-have plone-52">
-    <subscriber
-        for="*
-             Products.PlonePAS.interfaces.events.IUserLoggedInEvent"
-        handler=".events.userLogin"
-        />
-  
-    <subscriber
-        for="*
-             Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
-        handler=".events.userInitialLogin"
-        />
-  </configure>
-
-  <configure zcml:condition="have plone-52">
+    <configure zcml:condition="installed plone.login">
       <adapter
           factory="collective.onlogin.adapters.RedirectAfterLoginAdapter"
           for="OFS.interfaces.ITraversable
-               zope.publisher.interfaces.IRequest"
-      />
-  </configure>
+              zope.publisher.interfaces.IRequest"
+       />
+     </configure>
+     <configure zcml:condition="not-installed plone.login">
+       <subscriber
+           for="*
+               Products.PlonePAS.interfaces.events.IUserLoggedInEvent"
+           handler=".events.userLogin"
+       />
+       <subscriber
+           for="*
+               Products.PlonePAS.interfaces.events.IUserInitialLoginInEvent"
+               handler=".events.userInitialLogin"
+       />
+     </configure>
+   </configure>
 
+  <configure zcml:condition="have plone-52">
+    <adapter
+        factory="collective.onlogin.adapters.RedirectAfterLoginAdapter"
+        for="OFS.interfaces.ITraversable
+            zope.publisher.interfaces.IRequest"
+    />
+  </configure>
 
   <include package="plone.app.registry" />
 
@@ -63,7 +70,5 @@
       layer=".interfaces.IOnloginLayer"
       />
   
-
-
   
 </configure>
