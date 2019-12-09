@@ -52,7 +52,10 @@ class IOnloginSettings(Interface):
         title=_(u'Ignore came_from parameter on login'),
         description=_(u'By default Plone redirects user to last visited page '
                       'after login. Here you can disable this behavior and '
-                      'always redirect to above entered url.'),
+                      'always redirect to above entered url. To selectively '
+                      'enable the redirect, use came_from=onlogin_redirect '
+                      'in a link. For example, '
+                      'http://localhost/Plone/login?came_from=onlogin_redirect' ),
         required=False,
         default=False)
 

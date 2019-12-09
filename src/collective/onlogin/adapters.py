@@ -59,7 +59,7 @@ class RedirectAfterLoginAdapter(object):
 
             logger.info('ignore_came_from {0}'.format(self.ignore_came_from))
             logger.info('came_from ' + self.came_from)
-            if not self.ignore_came_from and self.came_from:
+            if not self.ignore_came_from and self.came_from!='onlogin_redirect':
                 OUTAHERE()
                 return self.came_from
 
